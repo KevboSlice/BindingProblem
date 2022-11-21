@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:model="clr-namespace:SampleMobile.Models"
+             xmlns:viewmodel="clr-namespace:SampleMobile.ViewModels"
+             x:DataType="viewmodel:MainPageViewModel"
+             x:Class="SampleMobile.MainPage">
+   <RefreshView
+      Grid.Row="0"
+      Command="{Binding GetEmployeesCommand}"
+      IsRefreshing="{Binding IsRefreshing}">
+      <CollectionView
+         ItemsSource="{Binding EmployeeList}"
+         SelectionMode="None">
+         <CollectionView.ItemTemplate>
+            <DataTemplate x:DataType="model:EmployeeModel">
+               <Grid Padding="5">
+                  <Frame Style="{StaticResource CardView}">
+                     <VerticalStackLayout>
+                        <Grid ColumnDefinitions="*,Auto" RowDefinitions="*,*,*">
+                           <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Text="{Binding Name}" Style="{DynamicResource BlackBrush}" FontSize="16" FontAttributes="Bold" />
+                           <Label Grid.Row="1" Grid.Column="0" Text="{Binding Department}" Style="{DynamicResource Gray300Brush}" FontSize="12" />
+                           <Label Grid.Row="1" Grid.Column="1" Text="{Binding Title}" Style="{DynamicResource Gray300Brush}" FontSize="12" HorizontalTextAlignment="End" />
+                        </Grid>
+                     </VerticalStackLayout>
+                  </Frame>
+               </Grid>
+            </DataTemplate>
+         </CollectionView.ItemTemplate>
+      </CollectionView>
+   </RefreshView>
+</ContentPage>
